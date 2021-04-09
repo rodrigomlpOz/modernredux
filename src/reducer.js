@@ -43,6 +43,8 @@ function reducer(state = initialStore, action) {
     };
   }
   if (action.type === GET_TOTALS) {
+ 
+
     let { total, amount } = state.cart.reduce(
       (cartTotal, cartItem) => {
         const { price, amount } = cartItem;
@@ -81,10 +83,3 @@ function reducer(state = initialStore, action) {
 }
 
 export default reducer;
-
-// switch (action.type) {
-//   case CLEAR_CART:
-//     return { ...state, cart: [] };
-//   default:
-//     return state;
-// }

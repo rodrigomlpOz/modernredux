@@ -1,8 +1,17 @@
 import React from "react";
 import CartItem from "./CartItem";
-import { connect } from "react-redux";
+import {useSelector, useDispatch} from 'react-redux'
 import { CLEAR_CART, GET_TOTALS } from "../actions";
-const CartContainer = ({ cart = [], total, dispatch }) => {
+
+
+const CartContainer = () => {
+  
+  const dispatch = useDispatch()
+  const cart = useSelector(state => state.cart)
+  const total = useSelector(state => state.total)
+
+
+
   React.useEffect(() => {
     dispatch({ type: GET_TOTALS });
   }, [cart, dispatch]);
@@ -48,8 +57,4 @@ const CartContainer = ({ cart = [], total, dispatch }) => {
   );
 };
 
-function mapStateToProps(store) {
-  const { cart, total } = store;
-  return { cart, total };
-}
-export default connect(mapStateToProps)(CartContainer);
+export default CartContainer;
